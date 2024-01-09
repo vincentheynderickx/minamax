@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import Http404
 from django.http import HttpResponse
 from .models import Event
@@ -9,11 +9,6 @@ def index(request):
     latest_event_list = Event.objects.order_by("-pub_date")[:5]
     context = {"latest_event_list": latest_event_list}
     return render(request, "minamax/index.html", context)
-
-    # def index(request):
-    latest_event_list = Event.objects.order_by("-pub_date")[:5]
-    output = ", ".join([q.event_text for q in latest_event_list])
-    return HttpResponse(output)
 
 
 def detail(request, event_id):
