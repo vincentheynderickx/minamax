@@ -1,11 +1,11 @@
-<h1>{{ event.event_text }}</h1>
+<h1>{Nom de l'évènement: { event.event_text }}</h1>
 <ul>
     {% for choice in event.choice_set.all %}
     <li>{{ choice.choice_text }}</li>
     {% endfor %}
 </ul>
 
-<h1>{{ event.event_date }}</h1>
+<h3>{Date: { event.event_date }}</h3>
 <ul>
     {% for choice in event.choice_set.all %}
     <li>{{ choice.choice_date }}</li>
