@@ -1,9 +1,9 @@
 from django.urls import path
 from . import views
 
-app_name = "polls"
+app_name = "minamax"
 urlpatterns = [
     path("", views.index, name="index"),
-    path("<int:question_id>/", views.detail, name="detail"),
-    path("<int:question_id>/results/", views.results, name="results"),
+    path("<int:minamax_id>/", views.detail, name="detail"),
+    path("<int:minamax_id>/results/", views.results, name="results"),
 ]
