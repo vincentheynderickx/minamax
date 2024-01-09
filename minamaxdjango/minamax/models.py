@@ -29,4 +29,4 @@ class Bet(models.Model):
     putting = models.FloatField(default=0.0)
     username = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     def __str__(self):
-        return self.event.event_text + " " + self.result.description_text + " " + str(self.putting)
+        return self.event.event_text + " " + " " + str(self.putting)
