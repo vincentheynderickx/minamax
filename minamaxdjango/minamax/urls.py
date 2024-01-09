@@ -4,6 +4,6 @@ from . import views
 app_name = "minamax"
 urlpatterns = [
     path("", views.index, name="index"),
-    path("<int:minamax_id>/", views.detail, name="detail"),
-    path("<int:minamax_id>/results/", views.results, name="results"),
+    path("<int:event_id>/", views.detail, name="detail"),
+    path("<int:event_id>/results/", views.results, name="results"),
 ]
