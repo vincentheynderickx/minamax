@@ -1,9 +1,9 @@
-{% if latest_question_list %}
+{% if latest_event_list %}
 <ul>
-    {% for question in latest_question_list %}
-    <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+    {% for event in latest_event_list %}
+    <li><a href="/polls/{{ question.id }}/">{{ event.event_text }}</a></li>
     {% endfor %}
 </ul>
 {% else %}
-<p>No polls are available.</p>
+<p>No bets are available.</p>
 {% endif %}
