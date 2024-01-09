@@ -7,9 +7,9 @@ from django.shortcuts import render
 
 
 def index(request):
-    latest_question_list = Event.objects.order_by("-pub_date")[:5]
-    context = {"latest_question_list": latest_question_list}
-    return render(request, context)
+    latest_question_list = Question.objects.order_by("-pub_date")[:5]
+    output = ", ".join([q.question_text for q in latest_question_list])
+    return HttpResponse(output)
 
 
 def detail(request, question_id):
