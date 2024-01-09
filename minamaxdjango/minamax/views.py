@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
 from django.http import Http404
 from django.http import HttpResponse
 from .models import Event
 from django.template import loader
 from django.shortcuts import render
+from .forms import CustomUserCreationForm
 
 
 def index(request):
@@ -27,3 +29,15 @@ def results(request, event_id):
 
 def vote(request, event_id):
     return HttpResponse("You're voting on question %s." % event_id)
+
+def signup(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('index')
+    else:
+        form = CustomUserCreationForm()
+
+    return render(request, 'signup.html', {'form': form})
