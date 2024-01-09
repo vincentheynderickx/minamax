@@ -9,7 +9,7 @@ from django.shortcuts import render
 def index(request):
     latest_question_list = Event.objects.order_by("-pub_date")[:5]
     context = {"latest_question_list": latest_question_list}
-    return render(request, "minamax/index.html", context)
+    return render(request, "minamax/templates/events/index.html", context)
 
 
 def detail(request, question_id):
@@ -17,7 +17,7 @@ def detail(request, question_id):
         question = Event.objects.get(pk=question_id)
     except Event.DoesNotExist:
         raise Http404("Question does not exist")
-    return render(request, "polls/detail.html", {"question": question})
+    return render(request, "minamax/detail.html", {"question": question})
 
 
 def results(request, event_id):
