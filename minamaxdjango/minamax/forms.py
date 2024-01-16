@@ -18,4 +18,4 @@ class CustomLoginForm(AuthenticationForm):
 class BetForm(forms.ModelForm):
     class Meta:
         model = Bet
-        fields = ["id", "event", "possibility", "putting", "username"]
+        fields = ["id", "event", "possibility", "putting"]

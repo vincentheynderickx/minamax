@@ -56,12 +56,15 @@ def custom_login(request, *args, **kwargs):
     )
 
 
+@login_required
 def to_bet(request):
     if request.method == "POST":
         form = BetForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect("index")
+            bet = form.save(commit=False)
+            bet.username = request.user
+            bet.save()
+            return redirect("../")
     else:
         form = BetForm()
 
