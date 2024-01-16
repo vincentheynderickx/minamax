@@ -15,7 +15,7 @@ class CustomLoginForm(AuthenticationForm):
     pass
 
 
-class BetForm:
+class BetForm(forms.ModelForm):
     class Meta:
         model = Bet
         fields = ["id", "event", "possibility", "putting", "username"]
