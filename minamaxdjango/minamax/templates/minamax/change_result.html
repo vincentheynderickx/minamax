@@ -1,0 +1,7 @@
+<h2>Modifier le résultat de la possibilite {{ possibility.description_text }} de l'evenement {{ possibility.event }}
+</h2>
+<form method="post" action="{% url 'minamax:change_result' possibility_id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enregistrer les modifications</button>
+</form>

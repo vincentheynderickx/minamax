@@ -13,4 +13,5 @@ urlpatterns = [
     path('logout/', LoginView.as_view(), name='logout'),
     path("<int:event_id>/", views.detail, name="detail"),
     path("<int:event_id>/results/", views.results, name="results"),
+    path("<int:possibility_id>/change_result/", views.change_result, name="change_result"),
 ]

@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import get_object_or_404, render
 from django.http import Http404
 from django.http import HttpResponse
-from .models import Event
+from .models import Possibility
 from .models import CustomUser
+from .models import Event
 from django.template import loader
 from .forms import CustomUserCreationForm
+from .forms import PossibilityResultForm
 from django.contrib.auth.views import LoginView
 
 def index(request):
@@ -37,7 +40,6 @@ def signup(request):
             return redirect('index')
     else:
         form = CustomUserCreationForm()
-
     return render(request, 'minamax/signup.html', {'form': form})
 
 @login_required
@@ -47,3 +49,15 @@ def profile(request):
 
 def custom_login(request, *args, **kwargs):
     return LoginView.as_view(template_name='minamax/login.html')(request, *args, **kwargs)
+
+@user_passes_test(lambda u: u.is_staff)
+def change_result(request, possibility_id):
+    possibility = get_object_or_404(Possibility, pk=possibility_id)
+    if request.method == 'POST':
+        form = PossibilityResultForm(request.POST, instance=possibility)
+        if form.is_valid():
+            form.save()
+    else:
+        form = PossibilityResultForm(instance=possibility)
+
+    return render(request, "minamax/change_result.html", {"form": form, "possibility": possibility, "possibility_id": possibility.id})
