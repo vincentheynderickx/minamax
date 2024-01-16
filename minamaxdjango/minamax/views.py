@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from .models import Possibility
 from .models import CustomUser
 from .models import Event
+from .models import Bet
 from django.template import loader
 from .forms import CustomUserCreationForm
 from .forms import PossibilityResultForm
@@ -58,6 +59,12 @@ def change_result(request, possibility_id):
     if request.method == 'POST':
         form = PossibilityResultForm(request.POST, instance=possibility)
         if form.is_valid():
+            if possibility.result == "Win":
+                bets = Bet.objects.filter(possibility=possibility)
+                for bet in bets:
+                    user = bet.username
+                    user.points += possibility.quotation * bet.putting
+                    user.save()
             form.save()
     else:
         form = PossibilityResultForm(instance=possibility)
