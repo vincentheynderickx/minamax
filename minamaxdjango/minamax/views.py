@@ -53,6 +53,8 @@ def custom_login(request, *args, **kwargs):
 @user_passes_test(lambda u: u.is_staff)
 def change_result(request, possibility_id):
     possibility = get_object_or_404(Possibility, pk=possibility_id)
+    if possibility.result != "Pending":
+        raise Http404("Result is not pending")
     if request.method == 'POST':
         form = PossibilityResultForm(request.POST, instance=possibility)
         if form.is_valid():

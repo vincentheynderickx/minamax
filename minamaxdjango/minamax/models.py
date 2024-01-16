@@ -34,6 +34,5 @@ class Bet(models.Model):
     possibility = models.ForeignKey(Possibility, on_delete=models.CASCADE)
     putting = models.FloatField(default=0.0)
     username = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-
     def __str__(self):
         return self.event.event_text + " " + " " + str(self.putting)

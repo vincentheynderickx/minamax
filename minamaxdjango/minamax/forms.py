@@ -14,7 +14,7 @@ class PossibilityResultForm(forms.ModelForm):
     class Meta:
         model = Possibility
         fields = ['result']
-        RESULT_CHOICES = [("Pending", "Pending"), ("Win", "Win"), ("Lose", "Lose")]
+        RESULT_CHOICES = [("Win", "Win"), ("Lose", "Lose")]
         result = forms.ChoiceField(choices=RESULT_CHOICES)
 
 class CustomLoginForm(AuthenticationForm):
