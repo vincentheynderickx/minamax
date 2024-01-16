@@ -38,12 +38,12 @@ def signup(request):
     else:
         form = CustomUserCreationForm()
 
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'minamax/signup.html', {'form': form})
 
 @login_required
 def profile(request):
     user = get_object_or_404(CustomUser, pk=request.user.pk)
-    return render(request, "profile.html", {'user': request.user})
+    return render(request, "minamax/profile.html", {'user': request.user})
 
 def custom_login(request, *args, **kwargs):
-    return LoginView.as_view(template_name='login.html')(request, *args, **kwargs)
+    return LoginView.as_view(template_name='minamax/login.html')(request, *args, **kwargs)
