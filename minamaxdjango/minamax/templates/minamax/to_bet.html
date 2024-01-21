@@ -1,5 +1,9 @@
+{% extends "minamax/base.html" %}
+{% block header %}MINAMAX{% endblock %}
+{% block content %}
 <form method="post" action="{% url 'minamax:to_bet' %}">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Bet</button>
 </form>
+{% endblock %}

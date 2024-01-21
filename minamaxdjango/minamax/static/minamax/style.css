@@ -1,0 +1,79 @@
+/* Reset CSS */
+body,
+h1,
+h2,
+p,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #4d596567;
+    color: #ecf0f1;
+    padding: 10px;
+    text-align: center;
+}
+
+header img {
+    width: 150px;
+    height: auto;
+}
+
+h1 {
+    font-size: 1.5em;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #4d596567;
+    color: #ecf0f1;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Style pour la navigation (exemple) */
+nav {
+    margin-top: 10px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+}
+
+/* Style pour les boutons (exemple) */
+button {
+    background-color: #3498db;
+    color: #ecf0f1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}

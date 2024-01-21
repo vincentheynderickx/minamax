@@ -1,3 +1,6 @@
+{% extends "minamax/base.html" %}
+{% block header %}MINAMAX{% endblock %}
+{% block content %}
 <h1>Name of event: {{ event.event_text }}</h1>
 <ul>
     {% for choice in event.choice_set.all %}
@@ -11,3 +14,4 @@
     <li>{{ choice.choice_date }}</li>
     {% endfor %}
 </ul>
+{% endblock %}

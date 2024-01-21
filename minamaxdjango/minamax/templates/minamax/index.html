@@ -1,3 +1,7 @@
+{% extends "minamax/base.html" %}
+{% block header %}MINAMAX{% endblock %}
+{% block content %}
+
 {% if latest_event_list %}
 <ul>
     <h1> Liste des évènements:</h1>
@@ -8,3 +12,5 @@
 {% else %}
 <p>No bets are available.</p>
 {% endif %}
+
+{% endblock %}
