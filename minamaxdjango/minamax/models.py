@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
-    points = models.IntegerField(default=0)
+    points = models.IntegerField(default=100)
 
 
 class Event(models.Model):
@@ -11,9 +11,8 @@ class Event(models.Model):
     event_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField("date published")
     event_date = models.DateTimeField("date event")
-
     def __str__(self):
-        return str(self.id) + " : " + self.event_text + " " + str(self.pub_date) + " "
+        return str(self.id) + " / " + self.event_text
 
 
 class Possibility(models.Model):
@@ -23,9 +22,8 @@ class Possibility(models.Model):
     quotation = models.FloatField(default=2.0)
     RESULT_CHOICES = [("Pending", "Pending"), ("Win", "Win"), ("Lose", "Lose")]
     result = models.CharField(max_length=10, choices=RESULT_CHOICES, default="Pending")
-
     def __str__(self):
-        return self.event.event_text + " " + self.description_text
+        return str(self.id) + " / " + self.event.event_text + " / " + self.description_text + " / " + str(self.quotation)
 
 
 class Bet(models.Model):
@@ -35,4 +33,4 @@ class Bet(models.Model):
     putting = models.FloatField(default=0.0)
     username = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     def __str__(self):
-        return self.event.event_text + " " + " " + str(self.putting)
+        return str(self.id) + " / " + str(self.possibility.description_text) + " / " + self.username.username + " / " + str(self.putting)

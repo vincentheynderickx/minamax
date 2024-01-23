@@ -2,15 +2,13 @@
 {% block header %}MINAMAX{% endblock %}
 {% block content %}
 
-{% if latest_event_list %}
+
 <ul>
     <h1> Liste des évènements:</h1>
     {% for event in latest_event_list %}
     <li><a href="{% url 'minamax:detail' event.id %}">{{ event.event_text }}</a></li>
     {% endfor %}
 </ul>
-{% else %}
-<p>No bets are available.</p>
-{% endif %}
+
 
 {% endblock %}
