@@ -24,7 +24,9 @@ def index(request):
 
 def detail(request, event_id):
     event = get_object_or_404(Event, pk=event_id)
-    return render(request, "minamax/detail.html", {"event": event})
+    possibilities_list = Possibility.objects.filter(event=event)
+    context = {"possibilities_list": possibilities_list, "event": event}
+    return render(request, "minamax/detail.html", context)
 
 
 def results(request, event_id):
@@ -42,7 +44,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("index")
+            return redirect("minamax:index")
     else:
         form = CustomUserCreationForm()
     return render(request, "minamax/signup.html", {"form": form})
@@ -88,7 +90,10 @@ def to_bet(request):
         if form.is_valid():
             bet = form.save(commit=False)
             bet.username = request.user
+            user = bet.username
+            user.points += -bet.putting
             bet.save()
+            user.save()
             return redirect("../")
     else:
         form = BetForm()
